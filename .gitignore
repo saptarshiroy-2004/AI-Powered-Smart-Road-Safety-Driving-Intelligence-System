@@ -1,0 +1,9 @@
+.idea
+main.py
+.venv
+venv/
+.DS_Store
+data/
+models/
+__pycache__/
+*.pth
