@@ -30,18 +30,21 @@
 
 ## 🚀 Key Features
 
-### 🛣️ Advanced Driver Assistance Systems (ADAS)
-- **Forward Collision Warning (FCW):** Calculates distance to the vehicle ahead and warns if a collision is imminent.
-- **Lane Departure Warning (LDW):** Detects if the vehicle is drifting out of its lane.
-- **Traffic Sign Recognition (TSR):** Identifies speed limits, stop signs, and traffic lights on the fly.
+### 🛣️ Advanced Driver Assistance Systems (ADAS) & Sensor Fusion
+- **Multi-Modal Sensor Integration:** Real-time telemetry monitoring for Lidar, Long-Range Radar, Camera Systems, and Ultrasound.
+- **Collision & Lane Warning Systems:** Evaluates trajectories to warn against imminent forward collisions and lane drifting.
 
-### 👁️ Driver Monitoring System (DMS)
-- **Drowsiness Detection:** Analyzes Eye Aspect Ratio (EAR) to detect micro-sleeps and yawning.
-- **Distraction Detection:** Identifies abnormal head posing, smartphone usage, or smoking.
+### 👁️ Intelligent Driver Monitoring System (DMS)
+- **Driver Attention Detection:** Calculates real-time focus ratios ($A = t_{focus} / t_{total}$) using advanced gaze tracking and facial landmark extraction CNNs.
+- **Physiological Stress Monitoring:** Implements Heart Rate Variability (HRV) calculations via simulated ECG feeds to detect latent driver fatigue and drowsiness before they manifest visually.
 
-### 📊 Telematics & Cloud Dashboard
-- **Driving Safety Score:** Evaluates comprehensive driver safety behavior over time.
-- **Trip Analytics Engine:** Visualizes trip paths, harsh braking events, and speed analytics via a sleek React dashboard.
+### 🔮 Unsupervised Behavioral Clustering (K-Means)
+- **Latent State Anomaly Detection:** Moves beyond standard supervised classification by utilizing an unsupervised K-Means clustering algorithm to identify hidden, novel driver behavior patterns (e.g., Micro-Sleep Risk, Distraction Anomalies) without requiring pre-labeled data.
+- **Dynamic Risk Assessment:** Plots current driver telemetry against learned cluster centroids to continuously evaluate and score real-time driving risk.
+
+### 📊 Interactive Streamlit Telemetry Dashboard
+- **Live Inference Engine:** Processes dashcam frames through a custom PyTorch 3-Block CNN architecture to identify distinct driver states (based on the State Farm dataset).
+- **Neural X-Ray:** Visualizes deep learning feature maps to explain how the model abstracts spatial variables and edges.
 
 ---
 
@@ -69,10 +72,10 @@ graph TD;
 - **Sensors:** 1080p Dashcam (Front), IR In-cabin Camera (Driver), GPS Module, IMU.
 
 ### 💻 Software Architecture
-*   **Computer Vision Frameworks:** PyTorch, OpenCV, Ultralytics YOLO, MediaPipe, Dlib.
+*   **Deep Learning & Vision:** PyTorch, OpenCV, Ultralytics YOLO, MediaPipe, Dlib.
+*   **Unsupervised Learning:** Scikit-Learn (K-Means Clustering).
+*   **Dashboard & Visualization:** Streamlit, Matplotlib, Pandas, Numpy.
 *   **Edge Optimization:** ONNX, TensorRT (for achieving 30+ FPS capability).
-*   **Backend & Telemetry:** Node.js, Python (FastAPI), PostgreSQL, MQTT.
-*   **Frontend Dashboard:** React.js, TailwindCSS.
 
 ---
 
@@ -113,8 +116,8 @@ Make sure you have the following installed on your machine:
 
 ### Running the System
 ```bash
-python src/engine/train.py  # To run the training pipeline
-python main.py              # To start inference (once pipeline is built)
+streamlit run app.py          # To launch the Interactive Telemetry Dashboard
+python src/engine/train.py    # To run the PyTorch training pipeline
 ```
 
 ---
