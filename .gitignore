@@ -7,3 +7,7 @@ data/
 models/
 __pycache__/
 *.pth
+docs/
+generate_report.py
+MINI_PROJECT_REPORT.md
+generate_research_paper.py
